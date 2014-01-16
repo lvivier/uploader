@@ -23,7 +23,7 @@
     line-height: 100px;
     text-align: center;
     white-space: nowrap;
-    content: attr(title);
+    content: 'upload image';
     color: #fff;
     background: rgba(0,0,0,0.6);
     opacity: 0;

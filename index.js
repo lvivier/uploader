@@ -11,16 +11,14 @@ var o = require('dom')
  */
 module.exports = Avatar
 
-function Avatar (el, opts) {
-  if (!(this instanceof Avatar)) return new Avatar(el, opts)
+function Avatar (el, url) {
+  if (!(this instanceof Avatar)) return new Avatar(el, url)
 
-  opts = opts || {}
-
-  this.el = el
-  this.url = opts.url || ''
+  this.el = el || o('<div/>')[0]
+  this.url = url || ''
 
   emitter(this)
-  render(this.el)
+  render(this.el, this.url)
 
   // ui binds
   o('input', this.el)
@@ -53,10 +51,18 @@ Avatar.prototype.upload = function (e) {
 }
 
 /**
+ * Append avatar to an element
+ */
+Avatar.prototype.appendTo = function (el) {
+  el.parentNode
+    .appendChild(this.el)
+}
+
+/**
  * Set the image URL
  */
 Avatar.prototype.set = function (url) {
-  o(this.el).css('background-image', 'url(%s)'.replace('%s', url))
+  o(this.el).css('background-image', bg(url))
   this.url = url
   this.emit('change', this)
   return this
@@ -65,9 +71,10 @@ Avatar.prototype.set = function (url) {
 /**
  * Render the avatar
  */
-function render (el) {
+function render (el, url) {
   o(el)
     .addClass('avatar')
+    .css('background-image', bg(url))
     .append('<input type=file name=avatar>')
 }
 
@@ -78,4 +85,8 @@ function hover (ev) {
   o(ev.target)
     .parent()
     .toggleClass('drop')
+}
+
+function bg (url) {
+  return 'url(%s)'.replace('%s', url)
 }

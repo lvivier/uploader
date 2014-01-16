@@ -27,8 +27,9 @@ avatar(el)
 
 TODO
 
-### Avatar(el[, opts])
+### Avatar([el], [url])
 ### Avatar#set(url)
+### Avatar#appendTo(el)
 ### Event: 'ready'
 ### Event: 'upload'
 ### Event: 'change'
