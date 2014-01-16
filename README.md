@@ -1,6 +1,8 @@
 
 # avatar
 
+![avatar gif](https://i.cloudup.com/XloypZKJ20.gif)
+
 Profile image upload/display component.
 Uses [component/s3](https://github.com/component/s3) for storage.
 
