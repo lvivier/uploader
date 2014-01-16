@@ -1,0 +1,13 @@
+{
+  "name": "avatar",
+  "version": "0.0.1",
+  "dependencies": {
+    "component/emitter": "*",
+    "component/dom": "*",
+    "component/s3": "*"
+  },
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": ["index.js"],
+  "styles": ["avatar.css"]
+}

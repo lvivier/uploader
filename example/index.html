@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="../build/build.css"/>
+  </head>
+  <body>
+    <div id="avatar" title="upload image"></div>
+    <script src="../build/build.js"></script>
+    <script src="https://dev.rets.ly/upload/policy"></script>
+    <script>
+      var el = document.getElementById('avatar')
+      require('avatar')(el)
+        .set('https://i.cloudup.com/mlFwr8PD2J.png')
+        .on('upload', function (file) { console.log(file) })
+    </script>
+  </body>
+</html>
