@@ -28,6 +28,8 @@ function Avatar (el, url) {
     .on('drop', hover)
 
   this.emit('ready')
+
+  return this;
 }
 
 /**
@@ -47,6 +49,7 @@ Avatar.prototype.upload = function (e) {
   upload.end(function (err) {
     if (err) throw err
     if (upload.url) self.set(upload.url)
+    self.emit('complete', self);
   })
 }
 
