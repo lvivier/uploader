@@ -1,0 +1,67 @@
+.uploader {
+  position: relative;
+}
+
+.uploader,
+.uploader::before,
+.uploader input {
+  cursor: pointer;
+  overflow: hidden !important;
+  display: block !important;
+}
+
+.uploader input {
+  height: 100% !important;
+  width: 100% !important;
+  opacity: 0;
+  z-index: 1;
+}
+
+.uploader img {
+  z-index: 0;
+  display: none;
+}
+
+.uploader::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    line-height: 100px;
+    text-align: center;
+    white-space: nowrap;
+    content: 'upload image';
+    color: #fff;
+    background: rgba(0,0,0,0.6);
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.uploader.drop::before,
+.uploader:focus::before,
+.uploader:hover::before {
+    opacity: 1;
+}
+
+.screenshot {
+  background-position: 50% 50%;
+  background-color: #f0f0f0;
+  background-size: cover;
+  font-family: sans-serif;
+  font-size: small;
+  height: 180px !important;
+  width: 260px !important;
+  border-radius: 5px;
+}
+
+.avatar {
+  background-position: 50% 50%;
+  background-color: #f0f0f0;
+  background-size: cover;
+  font-family: sans-serif;
+  font-size: small;
+  height: 100px !important;
+  width: 100px !important;
+  border-radius: 5px;
+}
