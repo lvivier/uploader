@@ -22,7 +22,7 @@ function Uploader (el, opts) {
   this.name = (typeof opts.name !== 'undefined') ? opts.name : 'uploads[]';
 
   emitter(this)
-  render(this.el, this.url)
+  render(this.el, this.url, this.name)
 
   // ui binds
   o('input', this.el)
@@ -84,11 +84,11 @@ Uploader.prototype.set = function (url) {
 /**
  * Render the avatar
  */
-function render (el, url) {
+function render (el, url, name) {
   o(el)
     .addClass('uploader')
     .css('background-image', bg(url))
-    .append('<input type=file name=uploader[]>')
+    .append('<input type=file name='+name+'>')
 }
 
 /**
