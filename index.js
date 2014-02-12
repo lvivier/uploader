@@ -18,8 +18,8 @@ function Uploader (el, opts) {
   this.el = el || o('<div/>')[0]
   this.opts = opts || {};
 
-  this.url = (typeof opts.url !== 'undefined') ? opts.url : '';
-  this.name = (typeof opts.name !== 'undefined') ? opts.name : 'uploads[]';
+  this.url = (opts && typeof opts.url !== 'undefined') ? opts.url : '';
+  this.name = (opts && typeof opts.name !== 'undefined') ? opts.name : 'uploads[]';
 
   emitter(this)
   render(this.el, this.url, this.name)
@@ -61,7 +61,9 @@ Uploader.prototype.upload = function (e) {
  * Append avatar to an element
  */
 Uploader.prototype.appendTo = function (el) {
-    o(el).parent().insert(this.el);
+  el.parentNode
+    .appendChild(this.el)
+  return this;
 }
 
 /**
@@ -69,6 +71,7 @@ Uploader.prototype.appendTo = function (el) {
  */
 Uploader.prototype.addClass = function(c) {
   o(this.el).addClass(c);
+  return this;
 };
 
 /**
