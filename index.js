@@ -61,8 +61,9 @@ Uploader.prototype.upload = function (e) {
  * Append avatar to an element
  */
 Uploader.prototype.appendTo = function (el) {
-  el.parentNode
-    .appendChild(this.el)
+  o(el)
+    .parent()
+    .insert(this.el)
   return this;
 }
 
@@ -70,7 +71,8 @@ Uploader.prototype.appendTo = function (el) {
  * Change the class of the current el
  */
 Uploader.prototype.addClass = function(c) {
-  o(this.el).addClass(c);
+  o(this.el)
+    .addClass(c);
   return this;
 };
 
