@@ -15,7 +15,7 @@ function Uploader (el, opts) {
 
   if (!(this instanceof Uploader)) return new Uploader(el, opts)
 
-  this.el = el || o('<div/>')[0]
+  this.el = o(el) || o('<div/>')
   this.opts = opts || {};
 
   this.url = (opts && typeof opts.url !== 'undefined') ? opts.url : '';
@@ -44,7 +44,6 @@ Uploader.prototype.upload = function (e) {
   var uid = Math.random() * 1e10 | 0
   var file = (e.target.files)[0]
   var name = 'uploads/' + uid
-  var self = this
 
   if (!file || file.type && !~file.type.indexOf('image')) return
   this.emit('upload', file, this)
@@ -52,9 +51,9 @@ Uploader.prototype.upload = function (e) {
   var upload = Upload(file, {name:name})
   upload.end(function (err) {
     if (err) throw err
-    if (upload.url) self.set(upload.url)
-    self.emit('complete', self);
-  })
+    if (upload.url) this.set(upload.url)
+    this.emit('complete', this);
+  }.bind(this))
 }
 
 /**
