@@ -1,6 +1,6 @@
 {
-  "name": "avatar",
-  "version": "0.0.2",
+  "name": "uploader",
+  "version": "0.0.3",
   "dependencies": {
     "component/emitter": "*",
     "component/dom": "*",
@@ -9,5 +9,5 @@
   "license": "MIT",
   "main": "index.js",
   "scripts": ["index.js"],
-  "styles": ["avatar.css"]
+  "styles": ["uploader.css"]
 }

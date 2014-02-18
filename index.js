@@ -7,18 +7,22 @@ var Upload = require('s3')
 var o = require('dom')
 
 /**
- * Avatar
+ * Uploader
  */
-module.exports = Avatar
+module.exports = Uploader
 
-function Avatar (el, url) {
-  if (!(this instanceof Avatar)) return new Avatar(el, url)
+function Uploader (el, opts) {
 
-  this.el = el || o('<div/>')[0]
-  this.url = url || ''
+  if (!(this instanceof Uploader)) return new Uploader(el, opts)
+
+  this.el = o(el || '<div/>')[0]
+  this.opts = opts || {}
+
+  this.url = (opts && typeof opts.url !== 'undefined') ? opts.url : ''
+  this.name = (opts && typeof opts.name !== 'undefined') ? opts.name : 'uploads[]'
 
   emitter(this)
-  render(this.el, this.url)
+  render(this.el, this.url, this.name)
 
   // ui binds
   o('input', this.el)
@@ -29,18 +33,17 @@ function Avatar (el, url) {
 
   this.emit('ready')
 
-  return this;
+  return this
 }
 
 /**
  * Upload an image
  * @api private
  */
-Avatar.prototype.upload = function (e) {
+Uploader.prototype.upload = function (e) {
   var uid = Math.random() * 1e10 | 0
   var file = (e.target.files)[0]
   var name = 'uploads/' + uid
-  var self = this
 
   if (!file || file.type && !~file.type.indexOf('image')) return
   this.emit('upload', file, this)
@@ -48,23 +51,34 @@ Avatar.prototype.upload = function (e) {
   var upload = Upload(file, {name:name})
   upload.end(function (err) {
     if (err) throw err
-    if (upload.url) self.set(upload.url)
-    self.emit('complete', self);
-  })
+    if (upload.url) this.set(upload.url)
+    this.emit('complete', this)
+  }.bind(this))
 }
 
 /**
  * Append avatar to an element
  */
-Avatar.prototype.appendTo = function (el) {
-  el.parentNode
-    .appendChild(this.el)
+Uploader.prototype.appendTo = function (el) {
+  o(el)
+    .parent()
+    .insert(this.el)
+  return this
+}
+
+/**
+ * Change the class of the current el
+ */
+Uploader.prototype.addClass = function(c) {
+  o(this.el)
+    .addClass(c)
+  return this
 }
 
 /**
  * Set the image URL
  */
-Avatar.prototype.set = function (url) {
+Uploader.prototype.set = function (url) {
   o(this.el).css('background-image', bg(url))
   this.url = url
   this.emit('change', this)
@@ -74,11 +88,11 @@ Avatar.prototype.set = function (url) {
 /**
  * Render the avatar
  */
-function render (el, url) {
+function render (el, url, name) {
   o(el)
-    .addClass('avatar')
+    .addClass('uploader')
     .css('background-image', bg(url))
-    .append('<input type=file name=avatar>')
+    .append('<input type=file name='+name+'>')
 }
 
 /**
