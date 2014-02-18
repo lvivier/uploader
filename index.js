@@ -15,11 +15,11 @@ function Uploader (el, opts) {
 
   if (!(this instanceof Uploader)) return new Uploader(el, opts)
 
-  this.el = o(el) || o('<div/>')
-  this.opts = opts || {};
+  this.el = o(el || '<div/>')[0]
+  this.opts = opts || {}
 
-  this.url = (opts && typeof opts.url !== 'undefined') ? opts.url : '';
-  this.name = (opts && typeof opts.name !== 'undefined') ? opts.name : 'uploads[]';
+  this.url = (opts && typeof opts.url !== 'undefined') ? opts.url : ''
+  this.name = (opts && typeof opts.name !== 'undefined') ? opts.name : 'uploads[]'
 
   emitter(this)
   render(this.el, this.url, this.name)
@@ -33,7 +33,7 @@ function Uploader (el, opts) {
 
   this.emit('ready')
 
-  return this;
+  return this
 }
 
 /**
@@ -52,7 +52,7 @@ Uploader.prototype.upload = function (e) {
   upload.end(function (err) {
     if (err) throw err
     if (upload.url) this.set(upload.url)
-    this.emit('complete', this);
+    this.emit('complete', this)
   }.bind(this))
 }
 
@@ -63,7 +63,7 @@ Uploader.prototype.appendTo = function (el) {
   o(el)
     .parent()
     .insert(this.el)
-  return this;
+  return this
 }
 
 /**
@@ -71,9 +71,9 @@ Uploader.prototype.appendTo = function (el) {
  */
 Uploader.prototype.addClass = function(c) {
   o(this.el)
-    .addClass(c);
-  return this;
-};
+    .addClass(c)
+  return this
+}
 
 /**
  * Set the image URL
