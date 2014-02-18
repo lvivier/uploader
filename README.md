@@ -1,9 +1,9 @@
 
-# avatar
+# uploader
 
 ![avatar gif](https://i.cloudup.com/XloypZKJ20.gif)
 
-Profile image upload/display component.
+Image upload/display component.
 Uses [component/s3](https://github.com/component/s3) for storage.
 
 ## Install
@@ -11,7 +11,7 @@ Uses [component/s3](https://github.com/component/s3) for storage.
 With [component](https://github.com/component/component):
 
 ```
-$ component install lvivier/avatar
+$ component install lvivier/uploader
 ```
 
 [component/s3](https://github.com/component/s3) also requires an `S3` 
@@ -20,31 +20,32 @@ global containing an S3 policy, see the s3 docs for help setting up.
 ## Usage
 
 ```js
-var avatar = require('avatar')
-var el = document.getElementById('myavatar')
+var upload = require('uploader')
+var el = document.getElementById('avatar')
 
-avatar(el)
+upload(el)
 ```
 
 ## API
 
-### Avatar([el], [url])
+### Uploader([el], [opts])
 
-Returns a new avatar with optional `el` and `url`.
+Returns a new uploader with optional `el`, `opts.name`, and `opts.url`.
 
-### Avatar#set(url)
+### Uploader#set(url)
 
-Sets the avatar image to `url`. Emits `change`.
+Sets the image to `url`. Emits `change`.
 
-### Avatar#appendTo(el)
+### Uploader#appendTo(el)
 
-Appends the avatar element to `el`.
+Appends the view element to `el`.
 
 ### Events
 
-- **ready** when avatar is initialized
-- **upload** when a file is selected or dropped onto the avatar
-- **change** when the avatar's image url changes
+- **ready** when uploader is initialized
+- **upload** when a file is selected or dropped onto the uploader
+- **complete** when the file is completely uploaded
+- **change** when the uploader's image url changes
 
 ## License
 
