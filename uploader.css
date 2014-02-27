@@ -1,5 +1,10 @@
 .uploader {
   position: relative;
+  background-position: 50% 50%;
+  background-color: #f0f0f0;
+  background-size: cover;
+  font-family: sans-serif;
+  font-size: small;
 }
 
 .uploader,
@@ -15,11 +20,6 @@
   width: 100% !important;
   opacity: 0;
   z-index: 1;
-}
-
-.uploader img {
-  z-index: 0;
-  display: none;
 }
 
 .uploader::before {
@@ -45,23 +45,18 @@
 }
 
 .screenshot {
-  background-position: 50% 50%;
-  background-color: #f0f0f0;
-  background-size: cover;
-  font-family: sans-serif;
-  font-size: small;
-  height: 180px !important;
-  width: 260px !important;
-  border-radius: 5px;
+  height: 180px;
+  width: 260px;
 }
 
 .avatar {
-  background-position: 50% 50%;
-  background-color: #f0f0f0;
-  background-size: cover;
-  font-family: sans-serif;
-  font-size: small;
-  height: 100px !important;
-  width: 100px !important;
+  height: 100px;
+  width: 100px;
+}
+
+.screenshot::before,
+.avatar::before,
+.screenshot,
+.avatar {
   border-radius: 5px;
 }
