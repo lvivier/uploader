@@ -8,6 +8,6 @@
   },
   "license": "MIT",
   "main": "index.js",
-  "scripts": ["index.js"],
+  "scripts": ["index.js", "error.js"],
   "styles": ["uploader.css"]
 }

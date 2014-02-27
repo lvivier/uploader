@@ -4,6 +4,7 @@
  */
 var emitter = require('emitter')
 var Upload = require('s3')
+var error = require('./error')
 var o = require('dom')
 
 /**
@@ -48,21 +49,23 @@ Uploader.prototype.upload = function (e) {
   if (!file || file.type && !~file.type.indexOf('image')) return
   this.emit('upload', file, this)
 
-  var upload = Upload(file, {name:name})
+  var upload = new Upload(file, {name:name})
+  var self = this
+  
   upload.end(function (err) {
-    if (err) throw err
-    if (upload.url) this.set(upload.url)
-    this.emit('complete', this)
-  }.bind(this))
+    if (err && err.message.match(/<Error>/)) err = error(err.message)
+    if (err) return self.emit('error', err)
+    if (upload.url) self.set(upload.url)
+    self.emit('complete', self)
+  })
 }
 
 /**
- * Append avatar to an element
+ * Append uploader to an element
  */
 Uploader.prototype.appendTo = function (el) {
-  o(el)
-    .parent()
-    .insert(this.el)
+  el.parentNode
+    .appendChild(this.el)
   return this
 }
 
