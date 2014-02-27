@@ -1,4 +1,9 @@
 
+# 0.1.1 / 2014-02-27
+
+- parse S3 errors
+- emit `error` events
+
 # 0.1.0 / 2014-02-17
 
 - rename to uploader
