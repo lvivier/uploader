@@ -82,7 +82,7 @@ Uploader.prototype.addClass = function(c) {
  * Set the image URL
  */
 Uploader.prototype.set = function (url) {
-  o(this.el).css('background-image', bg(url))
+  o(this.el).css('backgroundImage', bg(url))
   this.url = url
   this.emit('change', this)
   return this
@@ -94,7 +94,7 @@ Uploader.prototype.set = function (url) {
 function render (el, url, name) {
   o(el)
     .addClass('uploader')
-    .css('background-image', bg(url))
+    .css('backgroundImage', bg(url))
     .append('<input type=file name='+name+'>')
 }
 
