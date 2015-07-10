@@ -14,7 +14,13 @@ With [component](https://github.com/component/component):
 $ component install lvivier/uploader
 ```
 
-[component/s3](https://github.com/component/s3) also requires an `S3` 
+With [npm](https://npmjs.org/):
+
+```
+$ npm install lvivier/uploader
+```
+
+[component/s3](https://github.com/component/s3) also requires an `S3`
 global containing an S3 policy, see the s3 docs for help setting up.
 
 ## Usage

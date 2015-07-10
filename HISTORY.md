@@ -1,3 +1,8 @@
+# 0.2.0 / 2015-07-10
+
+- create package.json for browserify
+- update dependencies
+- update readme
 
 # 0.1.3 / 2014-10-14
 

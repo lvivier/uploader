@@ -7,6 +7,8 @@ var Upload = require('s3')
 var error = require('./error')
 var o = require('dom')
 
+require('./uploader.css')
+
 /**
  * Uploader
  */
@@ -51,7 +53,7 @@ Uploader.prototype.upload = function (e) {
 
   var upload = new Upload(file, {name:name})
   var self = this
-  
+
   upload.end(function (err) {
     if (err && err.message.match(/<Error>/)) err = error(err.message)
     if (err) return self.emit('error', err)
