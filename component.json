@@ -1,6 +1,6 @@
 {
   "name": "uploader",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "dependencies": {
     "component/emitter": "1.2.0",
     "component/dom": "1.0.8",
